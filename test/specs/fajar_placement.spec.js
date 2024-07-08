@@ -5,7 +5,7 @@ describe ('Test Case 1 -24', function(){
     before('User login', async function (){
         await jarPlacement.openPage()
         await jarPlacement.login('dummy@prosigmaka.com','dummypsm')
-        await browser.pause(2000)
+        await browser.pause(3000)
         await jarPlacement.openTimesheet()
         await browser.pause(6000)
         await jarPlacement.openPlacement()
@@ -14,6 +14,8 @@ describe ('Test Case 1 -24', function(){
     it('test case 1 - Searching by PRF', async function (){ //PASSED
         await jarPlacement.writeSearchBar('1235')
         await expect(jarPlacement.prf1).toHaveText('1235')
+        await jarPlacement.clickXSearch()
+        await browser.pause(5000)
     })
     it.skip('test case 2 - Searching by Client Name', async function (){
         await jarPlacement.writeSearchBar('Astra International')
@@ -29,64 +31,69 @@ describe ('Test Case 1 -24', function(){
         await expect(JSON.stringify(jarPlacement.prf1)).toHaveText('{}')
 
     })
-    it('test case 5 - Searching by Type', async function (){
+    it.skip('test case 5 - Searching by Type', async function (){
         
     })
-    it('test case 6 - Searching by Status', async function (){
+    it.skip('test case 6 - Searching by Status', async function (){
         
     })
-    it('test case 7', async function (){
+    it('test case 7 - Filtered by Client ', async function (){
+        await jarPlacement.clickFilterButton()
+        await jarPlacement.clickDropDownFilter1()
+        await browser.pause(2000)
+        await jarPlacement.clickMobbi()
+        await jarPlacement.clickFilterButton2
+        await expect(jarPlacement.prf1).toHaveText('1237')
+    })
+    it('test case 8 - Filtered by Resource', async function (){
         
     })
-    it('test case 8', async function (){
+    it('test case 9 - Filtered by Position', async function (){
         
     })
-    it('test case 9', async function (){
+    it('test case 10 - Filtered by Type', async function (){
         
     })
-    it('test case 10', async function (){
+    it('test case 11 - Filtered by Status', async function (){
         
     })
-    it('test case 11', async function (){
+    it('test case 12 - Filtered by 2 Condition', async function (){
         
     })
-    it('test case 12', async function (){
+    it('test case 13 - Filtered by 3 Condition', async function (){
         
     })
-    it('test case 13', async function (){
+    it('test case 14 - Filtered by 4 Condition', async function (){
         
     })
-    it('test case 14', async function (){
+    it('test case 15 - Filtered by 5 Condition', async function (){
         
     })
-    it('test case 15', async function (){
+    it('test case 16 - Filtered Without Condition', async function (){
         
     })
-    it('test case 16', async function (){
+    it('test case 17 - Cancelling Filtration', async function (){
         
     })
-    it('test case 17', async function (){
+    it('test case 18 - Reset Filter', async function (){
         
     })
-    it('test case 18', async function (){
+    it('test case 19 - Searching on Filter With Valid Keyword', async function (){
         
     })
-    it('test case 19', async function (){
+    it('test case 20 - Searching on Filter With Invalid Keyword ', async function (){
         
     })
-    it('test case 20', async function (){
+    it('test case 21 - Delete Search Keyword', async function (){
         
     })
-    it('test case 21', async function (){
+    it('test case 22 - Delete Placement' , async function (){
         
     })
-    it('test case 22', async function (){
+    it('test case 23 - Cancel Delete Placement', async function (){
         
     })
-    it('test case 23', async function (){
-        
-    })
-    it('test case 24', async function (){
+    it('test case 24 - View Detail', async function (){
         
     })
 

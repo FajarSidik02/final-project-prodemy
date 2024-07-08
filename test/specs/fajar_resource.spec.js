@@ -5,51 +5,41 @@ describe ('Test Case 1 -24', function(){
     before('User login', async function (){
         await jarPlacement.openPage()
         await jarPlacement.login('dummy@prosigmaka.com','dummypsm')
-        await browser.pause(2000)
+        await browser.pause(3000)
         await jarPlacement.openTimesheet()
         await browser.pause(6000)
-        await jarPlacement.openPlacement()
+        await jarResource.clickButtonResource()
     })
 
-    it('test case 1 ', async function (){ 
+    it('test case 13 - ', async function (){ 
 
     })
-    it('test case 2', async function (){
+    it('test case 14', async function (){
 
     })
-    it('test case 3 ', async function (){
+    it('test case 15 ', async function (){
 
     })
-    it('test case 4', async function (){
+    it('test case 16', async function (){
 
     })
-    it('test case 5', async function (){
+    it('test case 17', async function (){
         
     })
-    it('test case 6', async function (){
+    it('test case 18', async function (){
         
     })
-    it('test case 7', async function (){
+    it('test case 19', async function (){
         
     })
-    it('test case 8', async function (){
+    it('test case 20', async function (){
         
     })
-    it('test case 9', async function (){
+    it('test case 21', async function (){
         
     })
-    it('test case 10', async function (){
+    it('test case 22', async function (){
         
     })
-    it('test case 11', async function (){
-        
-    })
-    it('test case 12', async function (){
-        
-    })
-    it('test case 13', async function (){
-        
-    })
-
 
 })
