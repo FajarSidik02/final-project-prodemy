@@ -3,10 +3,18 @@ import jarPlacement from '../pageobjects/fajar_placement.js'
 
 describe ('Test Case 1 -24', function(){
     before('User login', async function (){
-        await jarPlacement.login('dummy@prosigmaka.com','PSM@123')
+        await jarPlacement.openPage()
+        await jarPlacement.login('dummy@prosigmaka.com','dummypsm')
+        await browser.pause(2000)
+        await jarPlacement.openTimesheet()
+        await browser.pause(6000)
+        await jarPlacement.openPlacement()
     })
-    it('test case 1', async function (){
 
+    it('test case 1', async function (){ //PASSED
+        await jarPlacement.writeSearchBar('1235')
+
+        await expect(jarPlacement.prf1).toHaveText('1235')
     })
     it('test case 2', async function (){
         
