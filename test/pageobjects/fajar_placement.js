@@ -8,7 +8,7 @@ class JarPlacement{
     get buttonPlacement() {return $('//*[@id="header-root"]/div/div/div[1]/div[2]/div[2]/a')}
     get searchBar() {return $('//*[@id="tableu7dr2k7944"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div/div/input')}
     get prf1() {return $('//*[@id="tableu7dr2k7944"]/div[2]/div/div/div[1]/div[2]/div/div/div/div[2]/div/div[1]/div[1]/div/div/div/div/span/div')}
-    
+    get xsearch() {return $('//*[@id="tableu7dr2k7944"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div/div[2]/svg/path[2]')}
     
     //action
     async login(username,password){
@@ -24,6 +24,9 @@ class JarPlacement{
     }
     async writeSearchBar(inputansearch){
         await this.searchBar.setValue(inputansearch)
+    }
+    async clickXSearch(){
+        await this.xsearch.click()
     }
 
     async openPage(){

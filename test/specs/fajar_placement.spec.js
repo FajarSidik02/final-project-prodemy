@@ -11,24 +11,28 @@ describe ('Test Case 1 -24', function(){
         await jarPlacement.openPlacement()
     })
 
-    it('test case 1', async function (){ //PASSED
+    it('test case 1 - Searching by PRF', async function (){ //PASSED
         await jarPlacement.writeSearchBar('1235')
-
         await expect(jarPlacement.prf1).toHaveText('1235')
     })
-    it('test case 2', async function (){
+    it.skip('test case 2 - Searching by Client Name', async function (){
+        await jarPlacement.writeSearchBar('Astra International')
+        await expect(jarPlacement.prf1).toHaveText({})
+    })
+    it.skip('test case 3 - Searching by Resource Name', async function (){
+        await jarPlacement.writeSearchBar('testerz')
+        await expect(JSON.stringify(jarPlacement.prf1)).toHaveText('{}')
+
+    })
+    it.skip('test case 4 - Searching by Position', async function (){
+        await jarPlacement.writeSearchBar('laravel')
+        await expect(JSON.stringify(jarPlacement.prf1)).toHaveText('{}')
+
+    })
+    it('test case 5 - Searching by Type', async function (){
         
     })
-    it('test case 3', async function (){
-        
-    })
-    it('test case 4', async function (){
-        
-    })
-    it('test case 5', async function (){
-        
-    })
-    it('test case 6', async function (){
+    it('test case 6 - Searching by Status', async function (){
         
     })
     it('test case 7', async function (){
@@ -44,6 +48,45 @@ describe ('Test Case 1 -24', function(){
         
     })
     it('test case 11', async function (){
+        
+    })
+    it('test case 12', async function (){
+        
+    })
+    it('test case 13', async function (){
+        
+    })
+    it('test case 14', async function (){
+        
+    })
+    it('test case 15', async function (){
+        
+    })
+    it('test case 16', async function (){
+        
+    })
+    it('test case 17', async function (){
+        
+    })
+    it('test case 18', async function (){
+        
+    })
+    it('test case 19', async function (){
+        
+    })
+    it('test case 20', async function (){
+        
+    })
+    it('test case 21', async function (){
+        
+    })
+    it('test case 22', async function (){
+        
+    })
+    it('test case 23', async function (){
+        
+    })
+    it('test case 24', async function (){
         
     })
 

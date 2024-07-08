@@ -1,7 +1,12 @@
-// object
+import { $,expect } from '@wdio/globals'
 
+class JarResource{
+   
 
+    
+    async openPage(){
+        await browser.url('https://timesheet.app.prosigmaka.com/user/login')
+    }
+}
 
-
-
-//action
+export default new JarResource()
