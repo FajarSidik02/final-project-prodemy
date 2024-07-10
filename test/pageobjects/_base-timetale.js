@@ -185,6 +185,10 @@ class TimeTalePage {
         return $('[data-widgetname-cy="submit_print_button"]')
     }
 
+    get btnCancel_print () {
+        return $('[data-widgetname-cy="cancel_print_button"]')
+    }
+
     //-------------------------------------------------------------------------------------------------------
     
     async login (username, password) {
@@ -359,6 +363,10 @@ class TimeTalePage {
         await this.input_TTD1.setValue(inputTTD1)
         await browser.pause(2000)
         await this.btnSubmit_print.click()
+    }
+
+    async cancel_print () {
+        await this.btnCancel_print.click()
     }
 }
 

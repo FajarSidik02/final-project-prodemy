@@ -121,7 +121,8 @@ describe('FITUR WEBSITE TIMETALE PROSIGMAKA', function(){
 
     it('Membatalkan Print', async function(){
         await TimeTalePage.print_timeSheet('2024-07-03', '2024-07-10', 'Ahmad')
-        await TimeTalePage.
+        await TimeTalePage.cancel_print()
+        await browser.pause(2000)
     })
 
 
