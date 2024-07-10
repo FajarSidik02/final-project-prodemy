@@ -52,9 +52,11 @@ export const config = {
     capabilities: [{
         browserName: 'chrome'
     }
-        //browserName: 'MicrosoftEdge'
     ],
-
+    before: function (capabilities, specs) {
+        browser.maximizeWindow();
+    },
+    
     //
     // ===================
     // Test Configurations
