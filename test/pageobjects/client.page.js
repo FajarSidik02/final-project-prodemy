@@ -20,7 +20,18 @@ class ClientPage {
     get isiAstra () {return $ ('//*[@id="auto_5vysyagp48"]/div/div/div[2]/div/span/span/div/input')}
     get btnNext () {return $ ('//*[@id="tabley4oky2h835"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[2]/div[4]')}
     get btnBefore () {return $ ('//*[@id="tabley4oky2h835"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[2]/div[2]')}
-    
+    get kolomEcomindo () {return $ ('//*[@id="tabley4oky2h835"]/div[2]/div/div/div[1]/div[2]/div/div/div/div[2]/div/div[5]/div/div/div/div/div')}
+    get btnDelete () { return $ ('//*[@id="auto_djlc3il0kw"]/div/div/span/div/button')}
+    get btnCancelDelete () {return $ ('//*[@id="auto_50hv948fxl"]/div/div/div/button')}
+    get btnYesDelete () {return $ ('//*[@id="auto_yivb1ifo58"]/div/div/div/button')}
+    get search () {return $ ('//*[@id="tabley4oky2h835"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div/div/input')}
+    get silangSearch () {return $ ('//*[@id="tabley4oky2h835"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div/div[2]')}
+    get btnView () {return $ ('//*[@id="auto_z0mptk294t"]/div/div/span/div/button')}
+    get btnViewSelected () {return $ ('//*[@id="auto_ijppf7mipb"]/div/div/span/div/button')}
+    get btnBackPlacement () {return $ ('//*[@id="auto_qsvx1ng2nw"]/div/div/div')}
+    get btnBackClient () {return $ ('//*[@id="auto_9cbyi64rde"]/div/div/div')}
+    get kotakName() {return $ ('//*[@id="tabley4oky2h835"]/div[2]/div/div/div[1]/div[2]/div/div/div/div[1]/div/div/div[1]')}
+    get allNameClient () {return $$ ('//div[@role="rowgroup"]/div/div/div/div/div/div/span/div')}
 
 
     //expect
@@ -86,9 +97,9 @@ class ClientPage {
         await this.btnCancelUpdate.click()
     }
 
-    async klikAstra () {
-        await this.kolomAstra.click()
-    }
+    // async klikAstra () {
+    //     await this.kolomAstra.click()
+    // }
 
     async clearAstra () {
         await this.isiAstra.clearValue()
@@ -107,6 +118,64 @@ class ClientPage {
         await this.btnBefore.click()
     }
 
+    async klikEcomindo () {
+        await this.kolomEcomindo.click()
+    }
+
+    async klikDelete () {
+        await this.btnDelete.click()
+    }
+
+    async klikCancelDelete () {
+        await this.btnCancelDelete()
+    }
+
+    async klikYesDelete () {
+        await this.btnYesDelete.click()
+    }
+
+    async inputSearch (inputSearch) {
+        await this.search.setValue(inputSearch)
+    }
+
+    async getAllName () {
+        let hasil = []
+        let allName = await this.allNameClient
+        for (let i of allName) {
+            let nama = await i.getText()
+            hasil.push(nama)
+        }
+        return hasil
+    }
+    
+
+    async klikSilangSearch () {
+        await this.silangSearch.click()
+    }
+
+    async klikBtnView () {
+        await this.btnView.click()
+    }
+
+    async klikBtnViewSelected () {
+        await this.btnViewSelected.click()
+    }
+
+    async klikBtnBackPlacement () {
+        await this.btnBackPlacement.click()
+    }
+
+    async klikBtnBackClient () {
+        await this.btnBackClient.click()
+    }
+
+    async klikKolomNameDesc () {
+        await this.kotakName.click()
+    }
+
+    async klikKolomNameAsc () {
+        await this.kotakName.click()
+    }
 }
 
 export default new ClientPage()

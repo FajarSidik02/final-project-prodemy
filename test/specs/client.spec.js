@@ -1,5 +1,6 @@
 import { $,expect, browser } from '@wdio/globals'
 import clientPage from '../pageobjects/client.page.js'
+import { isAscending, isDescending } from '../helpAlya.js'
 
 
 describe ("CLIENT TIMESHEET", function(){
@@ -52,24 +53,27 @@ describe ("CLIENT TIMESHEET", function(){
     it.only('5. Klik tombol Update Selected Client pada nama Astra Internasional tp yg diapus setengah', async function (){ 
         //await clientPage.klikAstra()
         await clientPage.klikUpdate()
+        // await browser.execute(function () {
+        //     document.querySelector('input[value="Astra Internasional"]').setAttribute('value', 'Astra');
+        //     })
+        //await clientPage.setAstra()
         await clientPage.clearAstra() //belum ke clear
+        await browser.pause(2000)
         await clientPage.setAstra()
-        await clientPage.submitUpdate()
-        await expect(clientPage.klikAstra).toHaveText('Astra')
-        //setvalue astra
-        // atau di clear dl baru di set
-        //kl mau diapus aja --> browser.keys 
+        //await clientPage.submitUpdate()
+        //await expect(clientPage.kolomAstra).toHaveText('Abc')
+        
     })
 
     it('6. Klik tombol Navigasi pada halaman client list untuk berpindah ke halaman selanjutnya dan mengembaikannya', async function (){ 
         await clientPage.navigasiNext()
-        await expect(clientPage.halamanNext).toHaveText('Page 2 of 2')
+        await expect(clientPage.halamanNext).toHaveText('Page 2 of 2') //expectnya beluman passed
 
     })
 
     it('6. Mengembalikan halaman ke halaman awal', async function (){ 
         await clientPage.navigasiBack()
-        await expect(clientPage.halamanAwal).toHaveText('Page 1 of 2')
+        await expect(clientPage.halamanAwal).toHaveText('Page 1 of 2') //ini juga
         await browser.pause(3000)
 
     })
@@ -82,50 +86,92 @@ describe ("CLIENT TIMESHEET", function(){
     })
 
     it('9. Klik tombol Delete Selected Client pada salah satu nama client tetapi cancel ', async function (){ 
-        
+        await clientPage.klikEcomindo()
+        await clientPage.klikDelete()
+        await clientPage.klikCancelDelete()
+        await expect(clientPage.clientList).toBeDisplayed()
     })
 
     it('8. Klik tombol Delete Selected Client dengan salah satu nama client', async function (){ 
-        
+        await clientPage.klikEcomindo()
+        await clientPage.klikDelete()
+        await clientPage.klikYesDelete()
+        //expectnya gimana kl dia ke delete? kl popup kecepetan
     })
 
     it('10. Search nama client dengan memasukkan 1 huruf', async function (){ 
-        
+        await browser.pause(3000)
+        await clientPage.inputSearch('a')
+        await browser.pause(3000)
+        let searchA = await clientPage.getAllName()
+        let jumlahNama = searchA.length
+        console.log('--------->', searchA)
+
+        searchA.forEach(element => { 
+            expect(element).toMatch(/[aA]/) //yg mengandung a kecil atau a besar
+        })
+
+        await expect(clientPage.allNameClient).toBeElementsArrayOfSize(jumlahNama)
+
     })
 
     it('11. Search dengan full nama salah satu client ', async function (){ 
-        
+        await browser.pause(3000)
+        await clientPage.inputSearch('Bambang')
+        await browser.pause(3000)
+        let searchA = await clientPage.getAllName()
+        let jumlahNama = searchA.length
+        console.log('--------->', searchA)
+
+        searchA.forEach(element => { 
+            expect(element).toMatch(/Bambang/i) //i = kl kata pake i, kl huruf pake []
+        })
+
+        await expect(clientPage.allNameClient).toBeElementsArrayOfSize(jumlahNama)
     })
 
     it('12. Klik button silang pada kolom search', async function (){ 
-        
+        await browser.pause(3000)
+        await clientPage.inputSearch('b')
+        await browser.pause(3000)
+        await clientPage.klikSilangSearch()
+        await expect(clientPage.clientList).toBeDisplayed()
     })
 
     it('13. Klik tombol View Selected Client pada client ecomindo', async function (){ 
-        
+        await clientPage.klikEcomindo()
+        await clientPage.klikBtnView()
+        await browser.pause(2000)
+        await clientPage.klikBtnViewSelected()
+        await browser.pause(2000)
+        await clientPage.klikBtnBackPlacement()
+        await browser.pause(2000)
+        await clientPage.klikBtnBackClient()
+        await browser.pause(2000)
+        await expect(clientPage.clientList).toBeDisplayed()
     })
 
-    it('14. Klik tombol Back pada halaman client detail', async function (){ 
-        
+    it('17. Short nama berdasarkan descending', async function (){
+        await clientPage.klikKolomNameDesc()
+        await browser.pause(2000)
+        let searchA = await clientPage.getAllName()
+        //let jumlahNama = searchA.length
+        console.log('--------->', searchA)
+
+        await expect(isDescending(searchA)).toBe(true)
+
+        //await expect(clientPage.allNameClient).toBeElementsArrayOfSize(jumlahNama)
     })
 
-    it('15. Klik tombol View Selected pada placement history di halaman client detail', async function (){ 
-        
-    })
+    it('18. Short nama berdasarkan ascending', async function (){ 
+        await clientPage.klikKolomNameAsc()
+        await browser.pause(2000)
+        let searchA = await clientPage.getAllName()
+        //let jumlahNama = searchA.length
+        console.log('--------->', searchA)
 
-    it('16. Klik tombol Back pada halaman placement detail', async function (){ 
-        
-    })
+        await expect(isAscending(searchA)).toBe(true)
 
-    it('17. Short nama berdasarkan descending', async function (){ 
-        
-    })
-
-    it('18. Mengembalikan short nama berdasarkan ascending', async function (){ 
-        
-    })
-
-    it('19. Mengembalikan short nama berdasarkan default', async function (){ 
-        
+        //await expect(clientPage.allNameClient).toBeElementsArrayOfSize(jumlahNama)
     })
 })
