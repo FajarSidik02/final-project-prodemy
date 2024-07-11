@@ -7,8 +7,8 @@ class JarResource{
    get buttonFilter(){return $('//*[@id="auto_bltdv6jlbs"]/div/div/span/div')}
    get startDate(){return $('#auto_1golpvk4yw > div > div > div.sc-cTcUcm.giBtmE > div > span > span > span > span > div > input')}
    get endDate(){return $('#auto_wsergub4c2 > div > div > div.sc-cTcUcm.giBtmE > div > span > span > span > span > div > input')}
-   get tanggal1(){return $('/html/body/div[7]/div/div/div/div[2]/div/div/div/div[1]/div/div[2]/div/div[3]/div[1]/div[2]/div')}
-   get tanggal2(){return $('/html/body/div[8]/div/div/div/div[2]/div/div/div/div[1]/div/div[2]/div/div[3]/div[1]/div[3]/div')}
+   get tanggal1(){return $('[aria-label="Mon Jul 01 2024"]')}
+   get tanggal2(){return $('[aria-label="Tue Jul 02 2024"]')}
    get buttonfilter2(){return $('//*[@id="auto_tsk973gndb"]/div/div/div')}
    get date1(){return $('//*[@id="tablegi64jzc4pf"]/div[2]/div/div/div[1]/div[2]/div/div/div/div[2]/div/div[1]/div[1]/div/div/div/div/span/div')}
    get buttonReset(){return $('//*[@id="auto_828wajdjxa"]/div/div/div')}
@@ -19,10 +19,10 @@ class JarResource{
    get buttonPrint(){return $('//*[@id="auto_zq9rzye0w1"]/div/div')}
    get start1(){return $('//*[@id="auto_jj9onrmlu7"]/div/div/div[2]/div/span/span/span/span/div/input')}
    get end1(){return $('//*[@id="auto_c11ardwe8m"]/div/div/div[2]/div/span/span/span/span/div/input')}
-   get tanggala(){return $('/html/body/div[6]/div/div/div/div[2]/div/div/div/div[1]/div/div[2]/div/div[3]/div[1]/div[2]')}
-   get tanggalb(){return $('/html/body/div[7]/div/div/div/div[2]/div/div/div/div[1]/div/div[2]/div/div[3]/div[1]/div[3]')}
+   get tanggala(){return $('[aria-label="Mon Jul 01 2024"]')}
+   get tanggalb(){return $('[aria-label="Tue Jul 02 2024"]')}
    get buttonPrint2(){return $('//*[@id="auto_potmdbhan5"]/div/div/div')}
-   get popupPrint(){return $('//*[@id="ToastId67"]')}
+   get popupPrint(){return $('[class="Toastify__toast Toastify__toast-theme--light Toastify__toast--success ads-v2-toast"]')}
    get cancelPrint(){return $('//*[@id="auto_u78plb2syf"]/div/div/div')}
    get nextNav(){return $('//*[@id="tablegi64jzc4pf"]/div[1]/div[1]/div[2]/div/div/div/div/div/div/div[4]')}
    

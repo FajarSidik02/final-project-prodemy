@@ -55,17 +55,17 @@ describe('FITUR WEBSITE TIMETALE PROSIGMAKA', function(){
         await TimeTalePage.goTo_timeSheet()
         await browser.pause(2000)
     })
-
+    // TIMESHEET
     //positif
-    it('Menambahkan Timesheet baru dengan attendence Sakit', async function(){
-        await TimeTalePage.addNew_timeSheet_submit_sakit()
-        await browser.pause(3000)
-    })
-
     it('Menambahkan Timesheet baru', async function(){
         await TimeTalePage.addNew_timeSheet_submit('08:00', '16:00', '17:00', '22:00', 'Buat website X')
         await browser.pause(3000)
         //return browser;
+    })
+
+    it('Menambahkan Timesheet baru dengan attendence Sakit', async function(){
+        await TimeTalePage.addNew_timeSheet_submit_sakit()
+        await browser.pause(3000)
     })
 
     it('Melakukan reset data pada timesheet baru', async function(){
@@ -120,10 +120,21 @@ describe('FITUR WEBSITE TIMETALE PROSIGMAKA', function(){
     })
 
     it('Membatalkan Print', async function(){
-        await TimeTalePage.print_timeSheet('2024-07-03', '2024-07-10', 'Ahmad')
-        await TimeTalePage.cancel_print()
+        await TimeTalePage.cancel_print('Ahmad')
         await browser.pause(2000)
     })
 
+    it('Melakukan Share', async function(){
+        await TimeTalePage.share()
+        await browser.pause(2000)
+    })
 
+    it('Kembali ke Dashboard', async function(){
+        await TimeTalePage._dashboard()
+        await browser.pause(2000)
+    })
+
+    it('Melakukan Sign Out', async function(){
+        await TimeTalePage.sign_out()
+    })
 })

@@ -43,10 +43,11 @@ describe ('Test Case 13 -22', function(){
         await jarResource.clickButtonBack()
         await expect(jarResource.date1).toHaveText('2024-06-24')
     })
-    it.skip('test case 19 - Print resource timesheets dengan tanggal valid', async function (){ //masih salah
+    it('test case 19 - Print resource timesheets dengan tanggal valid', async function (){ //masih salah
         await jarResource.clickButtonPrint()
         await jarResource.isiPrint()
         await expect(jarResource.popupPrint).toBeDisplayed()
+        // await expect(browser.isAlertOpen).toBe(true)
         //await expect(jarResource.popupPrint).toHaveTextContaining('Timesheets printed successfully!')
     })
     it('test case 20 - Print resource timsheets dengan tanggal invalid', async function (){
