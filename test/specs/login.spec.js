@@ -14,7 +14,7 @@ describe ("LOGIN TIMESHEET", function(){
     })
 
     it('2. Login dengan email salah dan password benar', async function (){ 
-        await loginPage.login('alya@prosigmaka.com', 'dummypsm')
+        await loginPage.login('alyaaw@prosigmaka.com', 'dummypsm')
         await expect(loginPage.errorLogin).toHaveText('It looks like you may have entered incorrect/invalid credentials. Please try again or reset password using the button below.')
     })
 
@@ -23,8 +23,8 @@ describe ("LOGIN TIMESHEET", function(){
         await expect(loginPage.errorLogin).toHaveText('It looks like you may have entered incorrect/invalid credentials. Please try again or reset password using the button below.')
     })
 
-    it('4. Login dengan email salah dan password salah', async function (){ 
-        await loginPage.login('alya@prosigmaka.com', 'dummy123')
+    it('4. Login dengan email salah dan password salah', async function (){ //"Your account is suspended for 24 hours. Please reset your password to continue"
+        await loginPage.login('alyaaw@prosigmaka.com', 'dummy123')
         await expect(loginPage.errorLogin).toHaveText('It looks like you may have entered incorrect/invalid credentials. Please try again or reset password using the button below.')
     })
 
@@ -33,19 +33,19 @@ describe ("LOGIN TIMESHEET", function(){
         await expect(loginPage.noValid).toHaveText('Please provide a valid email address')
     })
 
-    it('6. Login dengan mengosongkan email dan password', async function (){ 
+    it('6. Login dengan mengosongkan email dan password', async function (){ //yang kosong" error
         await loginPage.login('', '')
-        await expect(loginPage.noValid).toHaveText('')
+        await expect(loginPage.btnSignIn).toBeDisabled()
     })
 
     it('7. Login dengan email benar dan password kosong', async function (){ 
         await loginPage.login('dummy@prosigmaka.com', '')
-        await expect(loginPage.noValid).toHaveText('')
+        await expect(loginPage.btnSignIn).toBeDisabled()
     })
 
     it('8. login dengan email kosong dan password benar', async function (){ 
         await loginPage.login('', 'dummypsm')
-        await expect(loginPage.noValid).toHaveText('')
+        await expect(loginPage.btnSignIn).toBeDisabled()
     })
 
     it('9. Login dengan email benar tapi kombinasi huruf besar kecil dan password benar', async function (){ 
@@ -54,29 +54,13 @@ describe ("LOGIN TIMESHEET", function(){
         await loginPage.logout()
     })
 
-    it('10. Login dengan email dan kata sandi yang tersimpan', async function (){ 
-        
-    })
-
-    it('11. Login dengan "Lupa password"', async function (){ 
-        
-    })
-
-    it('12. Login dengan "Lupa password" tapi email salah', async function (){ 
-        
-    })
-
-    it('13. Login dengan email yang dispasi dan password benar', async function (){ 
+    it('10. Login dengan email yang dispasi dan password benar', async function (){ 
         await loginPage.login('dummy @prosigmaka.com', 'dummypsm')
         await expect(loginPage.noValid).toHaveText('Please provide a valid email address')
     })
 
-    it('14. Login dengan email format email salah ketik (typo) dan password benar', async function (){ 
+    it('11. Login dengan email format email salah ketik (typo) dan password benar', async function (){ 
         await loginPage.login('dummy@prosignaka.com', 'dummypsm')
         await expect(loginPage.errorLogin).toHaveText('It looks like you may have entered incorrect/invalid credentials. Please try again or reset password using the button below.')
-    })
-
-    it('15. Menguji login setelah pengaturan ulang kata sandi untuk memastikan kata sandi baru berfungsi', async function (){ 
-        //belum karena gadapet akses link dari email yang sudah dikirim melalui lupa password atau gausa?
     })
 })
