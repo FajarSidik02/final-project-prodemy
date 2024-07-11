@@ -74,15 +74,15 @@ class TimeTalePage {
     }
 
     get btnSubmit () {
-        return $('//*[@id="auto_1m5kooirv2"]')
+        return $('[data-widgetname-cy="btn_submit_new_timesheet"]')
     }
 
     get btnReset () {
-        return $('//*[@id="auto_s6mj9q4vjm"]')
+        return $('[data-widgetname-cy="btn_reset"]')
     }
 
     get btnReset_close () {
-        return $('//*[@id="auto_joowzxtkku"]/div')
+        return $('[data-widgetname-cy="button_close_modal"]')
     }
 
     get btnUpdate () {
@@ -113,8 +113,16 @@ class TimeTalePage {
         return $('//*[@id="auto_b8r2n55g6f"]/div/div[2]/div/span/span/textarea')
     }
 
+    get btnAttendance_update () {
+        return $('//*[@id="auto_5rav50jqwt"]/div/div/div[2]/span/span/div/button')
+    }
+
+    get btnAttd_hadir_update () {
+        return $('/html/body/div[7]')
+    }
+
     get btnSubmit_update () {
-        return $('//*[@id="auto_0hht1gclrz"]')
+        return $('[data-widgetname-cy="button_submit_update"]')
     }
 
     get btnFilter () {
@@ -130,7 +138,7 @@ class TimeTalePage {
     }
 
     get btnSubmit_filter () {
-        return $('//*[@id="auto_6ltzdjwaig"]/div/div/div')
+        return $('[data-widgetname-cy="SubmitFilter"]')
     }
 
     get overlayStart () {
@@ -150,15 +158,15 @@ class TimeTalePage {
     }
 
     get btnSubmitDelete_timeSheet () {
-        return $('//*[@id="auto_iwrjhqvbbh"]')
+        return $('[data-widgetname-cy="DeleteButton"]')
     }
 
     get btnNextPage () {
-        return $('//*[@id="table4ngnjq782v"]/div[1]/div[1]/div[2]/div/div/div/div/div/div/div[4]')
+        return $('.sc-ewcqwX.gHknCu.t--table-widget-next-page')
     }
 
     get btnPreviousPage () {
-        return $('//*[@id="table4ngnjq782v"]/div[1]/div[1]/div[2]/div/div/div/div/div/div/div[2]')
+        return $('.sc-ewcqwX.gHknCu.t--table-widget-prev-page')
     }
 
     get input_Page () {
@@ -187,6 +195,22 @@ class TimeTalePage {
 
     get btnCancel_print () {
         return $('[data-widgetname-cy="cancel_print_button"]')
+    }
+
+    get btnShare () {
+        return $('//*[@id="header-root"]/div/div/div[1]/div/section[2]/div/button')
+    }
+
+    get btnCopyURL () {
+        return $('//*[@id="radix-0"]/div[2]/div/button')
+    }
+
+    get btnClose_share () {
+        return $('//*[@id="radix-0"]/div[1]/button')
+    }
+
+    get btnSignOut () {
+        return $('[data-widgetname-cy="sign_out_button"]')
     }
 
     //-------------------------------------------------------------------------------------------------------
@@ -270,7 +294,9 @@ class TimeTalePage {
         await this.btnUpdate.click()
         await browser.pause(5000)
 
-        //await this.clickDataTimesheet_.click()
+        //await this.btnAttendance_update.click()
+        //await this.btnAttd_hadir_update.click()
+        //await browser.pause(1000)
 
         await this.inputUpdate_start.click()
         await this.inputUpdate_start.click()
@@ -356,17 +382,35 @@ class TimeTalePage {
         await browser.pause(2000)
         await this.inputStartDate_print.setValue(inputstart_date)
         await browser.keys('Enter')
-        await browser.pause(1000)
+        await browser.pause(3000)
         await this.inputEndDate_print.setValue(inputend_date)
         await browser.keys('Enter')
-        await browser.pause(1000)
+        await browser.pause(3000)
         await this.input_TTD1.setValue(inputTTD1)
         await browser.pause(2000)
         await this.btnSubmit_print.click()
+        await browser.pause(3000)
     }
 
-    async cancel_print () {
+    async cancel_print (inputTTD1) {
+        await this.btnPrint.click()
+
+        await this.input_TTD1.setValue(inputTTD1)
+        await browser.pause(2000)
         await this.btnCancel_print.click()
+        await browser.pause(2000)
+    }
+
+    async share () {
+        await this.btnShare.click()
+        await this.btnCopyURL.click()
+        await this.btnClose_share.click()
+        await browser.pause(2000)
+    }
+
+    async sign_out () {
+        await this.btnSignOut.click()
+        await browser.pause(2000)
     }
 }
 
