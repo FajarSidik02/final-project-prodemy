@@ -41,6 +41,10 @@ class TimeTalePage {
         return $('[data-widgetname-cy="AddButton"]')
     }
 
+    get inputDate () {
+        return $('//*[@id="auto_a6kabk6nz3"]/div/div/div[2]/div/span/span/span/span/div/input')
+    }
+
     get inputWorktime_start () {
         return $('//*[@id="auto_9cawbt0huy"]/div/div/div[2]/div/span/span/div/input')
     }
@@ -275,6 +279,8 @@ class TimeTalePage {
         await this.btnAddNew.click()
         await browser.pause(3000)
 
+        //await this.inputDate.click()
+        //await this.inputDate.setValue(inptDt)
         await this.inputWorktime_start.setValue(worktimeStart)
         await this.inputWorktime_end.setValue(worktimeEnd)
         await this.inputOvertime_start.setValue(overtimeStart)
@@ -291,10 +297,73 @@ class TimeTalePage {
         await this.btnAddNew.click()
         await browser.pause(3000)
 
+        //await this.inputDate.click()
+        //await this.inputDate.setValue(inptDt)
         await this.btnAttendance.click()
         await this.btnAttd_sakit.click()
         await this.btnSubmit.click()
         await browser.pause(2000)
+    }
+
+    async addNew_timeSheet_submit_libur() {
+        await this.btnAddNew.waitForExist()
+        await this.btnAddNew.click()
+        await browser.pause(3000)
+
+        //await this.inputDate.click()
+        //await this.inputDate.setValue(inptDt)
+        await this.btnAttendance.click()
+        await browser.keys('ArrowDown')
+        await browser.keys('ArrowDown')
+        await browser.keys('Enter')
+        await this.btnSubmit.click()
+        await browser.pause(2000)
+    }
+
+    async addNew_timeSheet_submit_cuti() {
+        await this.btnAddNew.waitForExist()
+        await this.btnAddNew.click()
+        await browser.pause(3000)
+
+        //await this.inputDate.click()
+        //await this.inputDate.setValue(inptDt)
+        await this.btnAttendance.click()
+        await browser.keys('ArrowDown')
+        await browser.keys('ArrowDown')
+        await browser.keys('ArrowDown')
+        await browser.keys('Enter')
+        await this.btnSubmit.click()
+        await browser.pause(2000)
+    }
+
+    async addNew_timeSheet_submit_alpa() {
+        await this.btnAddNew.waitForExist()
+        await this.btnAddNew.click()
+        await browser.pause(3000)
+
+        //await this.inputDate.click()
+        //await this.inputDate.setValue(inptDt)
+        await this.btnAttendance.click()
+        await browser.keys('ArrowDown')
+        await browser.keys('ArrowDown')
+        await browser.keys('ArrowDown')
+        await browser.keys('ArrowDown')
+        await browser.keys('Enter')
+        await this.btnSubmit.click()
+        await browser.pause(2000)
+    }
+
+    async addNew_blank() {
+        await this.btnAddNew.waitForExist()
+        await this.btnAddNew.click()
+        await browser.pause(3000)
+
+        await this.inputDate.click()
+        await browser.keys(['Control', 'a'])
+        await browser.keys('Delete')
+        await this.btnSubmit.click()
+        await browser.pause(3000)
+        await browser.keys('Escape')
     }
 
     async addNew_timeSheet_reset(worktimeStart, worktimeEnd, overtimeStart, overtimeEnd, activityNote) {
