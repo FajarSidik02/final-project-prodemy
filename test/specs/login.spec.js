@@ -1,5 +1,5 @@
 import { $,expect, browser } from '@wdio/globals'
-import loginPage from '../pageobjects/login.page.js';
+import loginPage from '../pageobjects/loginAlya.page.js'
 
 
 describe ("LOGIN TIMESHEET", function(){
