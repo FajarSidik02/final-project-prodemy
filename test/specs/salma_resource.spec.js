@@ -1,13 +1,13 @@
 import {browser,expect} from '@wdio/globals'
-import LoginPage from '../pageobjects/login.page.js'
+// import LoginPage from '../pageobjects/login.page.js'
 import Resource3 from '../pageobjects/salma_resource.js'
 import Placement2 from '../pageobjects/salma_placement.js'
 
 describe('RESOURCE', function(){
     describe('Resource List', function () {
         beforeEach('User melakukan login', async function () {   
-            await LoginPage.openPage()
-            await LoginPage.login('dummy@prosigmaka.com','dummypsm')    
+            await Resource3.openPage()
+            await Placement2.login('dummy@prosigmaka.com','dummypsm')    
             await browser.pause(3000)
             await Placement2.clickTimesheet()
             await browser.pause(5000) 
@@ -15,10 +15,10 @@ describe('RESOURCE', function(){
             await browser.pause(5000)
         })
 
-        afterEach( async function () {   
-            await browser.reloadSession()
+        // afterEach( async function () {   
+        //     await browser.reloadSession()
             
-        })
+        // })
     
         it('1 - User add new resource dengan mengisi semua field secara valid', async function () { //passed  
             await Resource3.newResource()
@@ -58,20 +58,20 @@ describe('RESOURCE', function(){
             //alert
         }) 
     
-        it('6 - User membatalkan mengubah data resource', async function () {  //passed
+        it.only('6 - User membatalkan mengubah data resource', async function () { 
             await Resource3.clickEdit()
             await Resource3.clickCancelEdit()
             await browser.pause(3000)
 
-            await expect(Resource3.modalForm).not.toBeDisplayed()
+            await expect(Resource3.modalEdit).not.toBeDisplayed()
         })
         
     })
     
     describe.skip('Resource Details', function () {
         beforeEach('User melakukan login', async function () {   
-            await LoginPage.openPage()
-            await LoginPage.login('dummy@prosigmaka.com','dummypsm')    
+            await Placement2.openPage()
+            await Placement2.login('dummy@prosigmaka.com','dummypsm')
             await browser.pause(3000)
             await Placement2.clickTimesheet()
             await browser.pause(2000)

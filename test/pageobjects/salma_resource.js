@@ -29,14 +29,7 @@ class Resource3 {
     get txtEdit(){return $('')}
 
     get cancelEdit(){return $('[data-widgetname-cy="update_form_cancel"]')}
-    get modalEdit(){return $('')}
-
-    get x(){return $('')}
-    get x(){return $('')}
-    get x(){return $('')}
-    get x(){return $('')}
-    get x(){return $('')}
-    get x(){return $('')}
+    get modalEdit(){return $('#root > div.sc-dSLGUj.fKTMqL > section > section > div > div > div > div > div > div.sc-bmhXnO.iIpWJw.auto-layout-layer-0-3 > div.sc-eLdnOn.sc-CqDOO.jPsBDi.eisDow > div > div > div > div > div > div > div.bp3-overlay-content.bp3-overlay-appear-done.bp3-overlay-enter-done')}    
     
     get dataTester(){return $('[data-rowindex="9"]')}
     get detailIcon(){return $('[data-widgetname-cy="detail_resource_button"]')}
@@ -56,7 +49,10 @@ class Resource3 {
     get backDetail(){return $('#auto_keryb8703h > div > div > div')}
     get txtBack(){return $('#auto_jqygsdepie > div > div > div > div > span')}
 
-    
+
+    async openPage(){
+        await browser.url('https://timesheet.app.prosigmaka.com/user/login')
+    }    
     async resourceList (){
         await this.resourceBtn.click()
     }

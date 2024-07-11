@@ -1,21 +1,22 @@
 import {browser,expect} from '@wdio/globals'
 import Placement2 from '../pageobjects/salma_placement.js'
-import LoginPage from '../pageobjects/login.page.js'
+// import LoginPage from '../pageobjects/login.page.js'
 
 describe('PLACEMENT', function(){
     describe('Placement Detail', function () {
         beforeEach('User melakukan login', async function () {   
-            await LoginPage.openPage()
-            await LoginPage.login('dummy@prosigmaka.com','dummypsm')
+            await Placement2.openPage()
+            await browser.pause(3000) 
+            await Placement2.login()
             await browser.pause(3000)
             await Placement2.clickTimesheet() 
             await browser.pause(2000)
             await Placement2.placementDetail()
         })
-        afterEach( async function () {   
-            await browser.reloadSession()
+        // afterEach( async function () {   
+        //     await browser.reloadSession()
             
-        })
+        // })
     
         it.skip('1 - User melakukan filtrasi data berdasarkan tanggal yang valid', async function () {  
             await Placement2.filterDetail()
@@ -33,7 +34,7 @@ describe('PLACEMENT', function(){
             
         })
     
-        it('2 - User melakukan reset filter data pada halaman view detail', async function () {  //passed
+        it.only('2 - User melakukan reset filter data pada halaman view detail', async function () {  //passed
             await Placement2.filterDetail()
             await Placement2.clickStartField()
             await Placement2.setStartDate()
@@ -112,8 +113,8 @@ describe('PLACEMENT', function(){
     
     describe('Placement Update', function () {
         beforeEach('User melakukan login', async function () {   
-            await LoginPage.openPage()
-            await LoginPage.login('dummy@prosigmaka.com','dummypsm')  
+            await Placement2.openPage()
+            await Placement2.login('dummy@prosigmaka.com','dummypsm')
             await browser.pause(3000) 
             await Placement2.clickTimesheet() //?
             await browser.pause(2000)

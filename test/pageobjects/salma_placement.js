@@ -1,4 +1,8 @@
 class Placement2 {
+get username(){return ('input[name="username"]')}
+get password(){return ('input[name="password"]')}
+get signIn(){return ('button[type="submit"]')}
+
 get timesheetAdmin (){return $('#root > section > div > div.sc-gfhzuL.cMfFWL > div > div.sc-GQHCi.lmmNTr.t--workspace-section > div.sc-kmtlux.bXecFQ > div.sc-jigNDC.gpcQed > div:nth-child(1) > div > div')}
 get placementBtn(){ return $('//*[@id="header-root"]/div/div/div[1]/div[2]/div[2]/a')}
 get dataUser(){return $('[data-rowindex="1"]')}
@@ -31,7 +35,6 @@ get endPrint(){return $('#auto_rpqo36kli9 > div > div > div.sc-cTcUcm.giBtmE')}
 get cancelPrint(){return $('#auto_qqj953m29c > div > div > div')}
 get modalPrint(){return $('#root > div.sc-dSLGUj.fKTMqL > section > section > div > div > div > div > div > div.sc-bmhXnO.iIpWJw.auto-layout-layer-0-2 > div.sc-eLdnOn.sc-fyJLnQ.jPsBDi.hxbasM > div > div > div > div > div > div > div.bp3-overlay-content.bp3-overlay-appear-done.bp3-overlay-enter-done')}
 
-
 get navRight(){return $('#tablezx8uhytssd > div:nth-child(1) > div.simplebar-wrapper > div.simplebar-mask > div > div > div > div > div > div > div.sc-ewcqwX.gHknCu.t--table-widget-next-page > span > svg')}
 get txt2(){return $('#tablezx8uhytssd > div:nth-child(1) > div.simplebar-wrapper > div.simplebar-mask > div > div > div > div > div > div > div.sc-ewcqwX.gHknCu.page-item')}
 get navLeft(){return $('#tablezx8uhytssd > div:nth-child(1) > div.simplebar-wrapper > div.simplebar-mask > div > div > div > div > div > div > div.sc-ewcqwX.gHknCu.t--table-widget-prev-page > span')}
@@ -45,26 +48,15 @@ get chooseName(){return $('body > div.bp3-portal > div > div > div > div > div >
 get cancelUpdate(){return $('#auto_53d888vnwy > div > div > div')}
 get txtCancel(){return $('#auto_3pwsppo3a6 > div > div > div > div > span')}
 
+async openPage(){
+    await browser.url('https://timesheet.app.prosigmaka.com/user/login')
+}  
 
-
-
-
-
-get x(){return $('')}
-get x(){return $('')}
-get x(){return $('')}
-get x(){return $('')}
-get x(){return $('')}
-get x(){return $('')}
-get x(){return $('')}
-get x(){return $('')}
-get x(){return $('')}
-get x(){return $('')}
-get x(){return $('')}
-get x(){return $('')}
-get x(){return $('')}
-get x(){return $('')}
-get x(){return $('')}
+async login(){
+    await this.username.setValue('dummy@prosigmaka.com')
+    await this.password.setValue('dummypsm')
+    await this.signIn.click()
+}
 
 async clickTimesheet(){
     this.timesheetAdmin.click()
@@ -125,12 +117,6 @@ async clickEndPrint(){
 async clickPrintBtn(){
     this.printBtn.click()
 }
-
-// async handlingAlertPrint(){
-//     // await browser.isAlertOpen()
-//     await browser.getAlertText('successfully')
-//     // await browser.acceptAlert()
-// }
 
 async canceledPrint(){
     this.cancelPrint.click()
