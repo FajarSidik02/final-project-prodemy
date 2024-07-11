@@ -51,8 +51,12 @@ export const config = {
     //
     capabilities: [{
         browserName: 'chrome'
-    }],
-
+    }
+    ],
+    before: function (capabilities, specs) {
+        browser.maximizeWindow();
+    },
+    
     //
     // ===================
     // Test Configurations
