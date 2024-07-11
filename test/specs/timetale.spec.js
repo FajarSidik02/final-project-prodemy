@@ -79,9 +79,14 @@ describe('FITUR WEBSITE TIMETALE PROSIGMAKA', function(){
         await browser.pause(3000)
     })
 
-    it.skip('Melakukan filter pada timesheet', async function(){
-        await TimeTalePage.filter_timeSheet()
+    it('Melakukan filter pada timesheet', async function(){
+        await TimeTalePage.filter_timeSheet('2024-07-02', '2024-07-11')
         await browser.pause(3000)
+    })
+
+    it('Melakukan reset filter pada timesheet', async function(){
+        await TimeTalePage.reset_filter_timeSheet()
+        await browser.pause(2000)
     })
 
     it('Menghapus data timesheet', async function(){
@@ -116,11 +121,11 @@ describe('FITUR WEBSITE TIMETALE PROSIGMAKA', function(){
     })
 
     it('Melakukan Print', async function(){
-        await TimeTalePage.print_timeSheet('2024-07-03', '2024-07-10', 'Ahmad')
+        await TimeTalePage.print_timeSheet('2024-07-02', '2024-07-11', 'Ahmad', 'Budi', 'Coro', 'Dono', 'Eko', 'Feri')
     })
 
     it('Membatalkan Print', async function(){
-        await TimeTalePage.cancel_print('Ahmad')
+        await TimeTalePage.cancel_print('ALUL')
         await browser.pause(2000)
     })
 

@@ -130,15 +130,19 @@ class TimeTalePage {
     }
 
     get inputStartDate_filter () {
-        return $('div.DayPicker-Day[aria-label*="Jul 03 2024"]')
+        return $('//*[@id="auto_qrpn9id9zn"]/div/div/div[2]/div/span/span/span/span/div/input')
     }
 
     get inputEndDate_filter () {
-        return $('div.DayPicker-Day[aria-label*="Jul 10 2024"]')
+        return $('//*[@id="auto_wwwonqqutx"]/div/div/div[2]/div/span/span/span/span/div/input')
     }
 
     get btnSubmit_filter () {
         return $('[data-widgetname-cy="SubmitFilter"]')
+    }
+
+    get btnReset_filter () {
+        return $('[data-widgetname-cy="ResetButton"]')
     }
 
     get overlayStart () {
@@ -187,6 +191,26 @@ class TimeTalePage {
 
     get input_TTD1 () {
         return $('//*[@id="auto_yulv1p58w7"]/div/div/div[2]/div/span/span/div/input')
+    }
+
+    get input_TTD2 () {
+        return $('//*[@id="auto_zxtd6zwwhz"]/div/div/div[2]/div/span/span/div/input')
+    }
+
+    get input_TTD3 () {
+        return $('//*[@id="auto_04tgjshe2l"]/div/div/div[2]/div/span/span/div/input')
+    }
+
+    get input_TTD4 () {
+        return $('//*[@id="auto_860v6r1xfm"]/div/div/div[2]/div/span/span/div/input')
+    }
+
+    get input_TTD5 () {
+        return $('//*[@id="auto_70g4bid7ev"]/div/div/div[2]/div/span/span/div/input')
+    }
+
+    get input_TTD6 () {
+        return $('//*[@id="auto_yy8f6tcjdp"]/div/div/div[2]/div/span/span/div/input')
     }
 
     get btnSubmit_print () {
@@ -294,8 +318,10 @@ class TimeTalePage {
         await this.btnUpdate.click()
         await browser.pause(5000)
 
-        //await this.btnAttendance_update.click()
-        //await this.btnAttd_hadir_update.click()
+        await this.btnAttendance_update.click()
+        await browser.keys('ArrowUp')
+        await browser.pause(2000)
+        await browser.keys('Enter')
         //await browser.pause(1000)
 
         await this.inputUpdate_start.click()
@@ -336,15 +362,25 @@ class TimeTalePage {
         await this.btnSubmit_update.click()
     }
 
-    async filter_timeSheet(){
+    async filter_timeSheet(start_date_filter, end_date_filter){
         await this.btnFilter.click()
-        await this.overlayStart.click()
+        //await this.overlayStart.click()
         await this.inputStartDate_filter.click()
+        await this.inputStartDate_filter.setValue(start_date_filter)
+        await browser.keys('Enter')
         await browser.pause(3000)
-        await this.overlayEnd.click()
+        //await this.overlayEnd.click()
         await this.inputEndDate_filter.click()
+        await this.inputEndDate_filter.setValue(end_date_filter)
+        await browser.keys('Enter')
         await browser.pause(3000)
         await this.btnSubmit_filter.click()
+    }
+
+    async reset_filter_timeSheet(){
+        await this.btnFilter.click()
+        await browser.pause(2000)
+        await this.btnReset_filter.click()
     }
 
     async delete_timeSheet(){
@@ -357,13 +393,13 @@ class TimeTalePage {
     async nextPage(){
         await this.btnNextPage.click()
         await browser.pause(1000)
-        await this.btnNextPage.click()
+        //await this.btnNextPage.click()
     }
 
     async previousPage(){
         await this.btnPreviousPage.click()
         await browser.pause(1000)
-        await this.btnPreviousPage.click()
+        //await this.btnPreviousPage.click()
     }
 
     async inputPage (inputPg) {
@@ -372,12 +408,13 @@ class TimeTalePage {
         await browser.keys(['Control', 'a'])
         await browser.pause(2000)
         await browser.keys('Delete')
-        await this.input_Page.addValue(inputPg)
+        await browser.keys('ArrowRight')
+        await this.input_Page.setValue(inputPg)
         await browser.pause(2000)
         await browser.keys('Enter')
     }
 
-    async print_timeSheet (inputstart_date, inputend_date, inputTTD1) {
+    async print_timeSheet (inputstart_date, inputend_date, inputTTD1, inputTTD2, inputTTD3, inputTTD4, inputTTD5, inputTTD6) {
         await this.btnPrint.click()
         await browser.pause(2000)
         await this.inputStartDate_print.setValue(inputstart_date)
@@ -388,6 +425,16 @@ class TimeTalePage {
         await browser.pause(3000)
         await this.input_TTD1.setValue(inputTTD1)
         await browser.pause(2000)
+        await this.input_TTD2.setValue(inputTTD2)
+        await browser.pause(2000)
+        await this.input_TTD3.setValue(inputTTD3)
+        await browser.pause(2000)
+        await this.input_TTD4.setValue(inputTTD4)
+        await browser.pause(2000)
+        await this.input_TTD5.setValue(inputTTD5)
+        await browser.pause(2000)
+        await this.input_TTD6.setValue(inputTTD6)
+        await browser.pause(2000)
         await this.btnSubmit_print.click()
         await browser.pause(3000)
     }
@@ -395,6 +442,10 @@ class TimeTalePage {
     async cancel_print (inputTTD1) {
         await this.btnPrint.click()
 
+        await this.input_TTD1.click()
+        await browser.keys(['Control', 'a'])
+        await browser.pause(3000)
+        await browser.keys(['Delete'])
         await this.input_TTD1.setValue(inputTTD1)
         await browser.pause(2000)
         await this.btnCancel_print.click()
@@ -404,6 +455,7 @@ class TimeTalePage {
     async share () {
         await this.btnShare.click()
         await this.btnCopyURL.click()
+        await browser.pause(2000)
         await this.btnClose_share.click()
         await browser.pause(2000)
     }
