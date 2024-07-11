@@ -4,6 +4,7 @@ import jarPlacement from '../pageobjects/fajar_placement.js'
 describe ('Test Case 1 -24', function(){
     before('User login', async function (){
         await jarPlacement.openPage()
+        await browser.setWindowSize(1920,1080)
         await jarPlacement.login('dummy@prosigmaka.com','dummypsm')
         await browser.pause(3000)
         await jarPlacement.openTimesheet()
