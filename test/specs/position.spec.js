@@ -101,7 +101,7 @@ describe ("POSITION TIMESHEET", function(){
         search.forEach(element => { 
             expect(element).toMatch(/[rR]/) //yg mengandung r kecil atau r besar
         })
-        await expect(positionPage.allNamePosition).toBeElementsArrayOfSize(jumlahNama) //masi error expextnya allNamePosisi is not iterable di page jsnya
+        await expect(positionPage.allNamePosition).toBeElementsArrayOfSize(jumlahNama)
     })
 
     it('12. Search dengan full nama salah satu position', async function (){ 
@@ -153,10 +153,10 @@ describe ("POSITION TIMESHEET", function(){
         
     })
 
-    it('17. Hapus nama position dengan total placement 1', async function (){ 
+    it.only('17. Hapus nama position dengan total placement 1', async function (){ 
         await positionPage.klikKolomAndroid()
         await browser.pause(2000)
-        await expect(positionPage.btnDelete).toBeDisabled() //kok Received: "not disabled"??
+        await expect(positionPage.btnDelete).not.toBeEnabled()
         await browser.pause(2000)
     })
 

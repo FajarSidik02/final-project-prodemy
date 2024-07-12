@@ -17,13 +17,13 @@ class PositionPage {
     get btnSubmitUpdate () {return $('//*[@id="auto_5wmgaw43nc"]/div/div/div')}
     get kolomAndroid () {return $('//*[@id="tablel4feo0hjff"]/div[2]/div/div/div[1]/div[2]/div/div/div/div[2]/div/div[2]/div[1]/div/div/div/div/span/div')}
     get kolomSystemAnalys () {return $('//*[@id="tablel4feo0hjff"]/div[2]/div/div/div[1]/div[2]/div/div/div/div[2]/div/div[9]/div[1]/div/div/div/div/span')}
-    get btnDelete () {return $('//*[@id="auto_djlc3il0kw"]/div/div/span/div')}
+    get btnDelete () {return $('//*[@id="auto_djlc3il0kw"]/div/div/span/div/button')}
     get btnCancelDelete () {return $('//*[@id="auto_50hv948fxl"]/div/div/div')}
     get btnYesDelete () {return $('//*[@id="auto_yivb1ifo58"]/div/div/div')}
     get btnNext () {return $('//*[@id="tablel4feo0hjff"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[2]/div[4]')}
     get btnBack () {return $('//*[@id="tablel4feo0hjff"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[2]/div[2]')}
     get search () {return $('//*[@id="tablel4feo0hjff"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div/div/input')}
-    get allNamePosition () {return $('//div[@role="rowgroup"]/div/div/div/div/div/div/span/div')}
+    get allNamePosition () {return $$('//div[@role="button"]/div[1]/div/div/div/div/span/div')}
     get silangPosition () {return $('//*[@id="tablel4feo0hjff"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div/div[2]')}
     get kolomPositionName () {return $('//*[@id="tablel4feo0hjff"]/div[2]/div/div/div[1]/div[2]/div/div/div/div[1]/div/div[1]/div[1]/div')}
     get kolomDBAdmin () {return $('//*[@id="tablel4feo0hjff"]/div[2]/div/div/div[1]/div[2]/div/div/div/div[2]/div/div[3]/div[1]/div/div/div/div/span/div')}
