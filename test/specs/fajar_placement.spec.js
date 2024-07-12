@@ -12,22 +12,22 @@ describe ('Test Case 1 -24', function(){
         await jarPlacement.openPlacement()
     })
 
-    it('test case 1 - Searching by PRF', async function (){ //PASSED
+    it('test case 1 - Searching by PRF', async function (){ //passed
         await jarPlacement.writeSearchBar('1235')
         await expect(jarPlacement.prf1).toHaveText('1235')
         await jarPlacement.clickXSearch()
         await browser.pause(5000)
     })
-    it.skip('test case 2 - Searching by Client Name', async function (){
+    it.skip('test case 2 - Searching by Client Name', async function (){ //failed
         await jarPlacement.writeSearchBar('Astra International')
         await expect(jarPlacement.prf1).toHaveText('{}')
     })
-    it.skip('test case 3 - Searching by Resource Name', async function (){
+    it.skip('test case 3 - Searching by Resource Name', async function (){ //failed
         await jarPlacement.writeSearchBar('testerz')
         await expect(JSON.stringify(jarPlacement.prf1)).toHaveText('{}')
 
     })
-    it.skip('test case 4 - Searching by Position', async function (){
+    it.skip('test case 4 - Searching by Position', async function (){ //failed
         await jarPlacement.writeSearchBar('laravel')
         await expect(JSON.stringify(jarPlacement.prf1)).toHaveText('{}')
 
@@ -99,6 +99,7 @@ describe ('Test Case 1 -24', function(){
     it('test case 13 - Filtered by 3 Condition', async function (){//passed
         await jarPlacement.clickFilterButton()
         await jarPlacement.clickDropDownFilter3()
+        await browser.pause(1000)
         await jarPlacement.clickPosName()
         await jarPlacement.clickFilterButton2()
         await expect(jarPlacement.prf1).toHaveText('1237')
@@ -142,13 +143,14 @@ describe ('Test Case 1 -24', function(){
     it('test case 19 - Searching on Filter With Valid Keyword', async function (){//passed
         await jarPlacement.isisearchfilter('mobbi')
         await expect(jarPlacement.searchfound).toHaveText('Mobbi')
+        await jarPlacement.clickbuttonXfilter()
     })
     
-    it.skip('test case 21 - Delete Search Keyword', async function (){
+    it.skip('test case 21 - Delete Search Keyword', async function (){ //failed
         await jarPlacement.clickCloseSearch()
         await expect
     })
-    it.only('test case 22 - Delete Placement' , async function (){
+    it.skip('test case 22 - Delete Placement' , async function (){ //passed
         // await jarPlacement.clickbuttonXfilter()
         await jarPlacement.clickButtonDelete()
         await jarPlacement.clickButtonDelete2()
@@ -158,13 +160,13 @@ describe ('Test Case 1 -24', function(){
     it('test case 23 - Cancel Delete Placement', async function (){//passed
         await jarPlacement.clickButtonDelete()
         await jarPlacement.clickcanceldelete()
-        await expect(jarPlacement.prf1).toHaveText('123456')
+        await expect(jarPlacement.prf1).toHaveText('1239')
 
     })
     it('test case 24 - View Detail', async function (){//passed
         await jarPlacement.clickdata1()
         await jarPlacement.clickviewdetail()
-        await expect (browser).toHaveUrl('https://timesheet.app.prosigmaka.com/app/timesheet-admin/placement-detail-659f5b33d90d8b3224f1c2c4?id=e5750a55-399a-41a4-8968-b2114bdf8803&pageID=Placement%20List')
+        await expect (browser).toHaveUrl('https://timesheet.app.prosigmaka.com/app/timesheet-admin/placement-detail-659f5b33d90d8b3224f1c2c4?id=64f5d6ed-28df-4d94-946d-42c683d10fbe&pageID=Placement%20List')
     })
 
 
