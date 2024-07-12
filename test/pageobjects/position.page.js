@@ -22,6 +22,17 @@ class PositionPage {
     get btnYesDelete () {return $('//*[@id="auto_yivb1ifo58"]/div/div/div')}
     get btnNext () {return $('//*[@id="tablel4feo0hjff"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[2]/div[4]')}
     get btnBack () {return $('//*[@id="tablel4feo0hjff"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[2]/div[2]')}
+    get search () {return $('//*[@id="tablel4feo0hjff"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div/div/input')}
+    get allNamePosition () {return $('//div[@role="rowgroup"]/div/div/div/div/div/div/span/div')}
+    get silangPosition () {return $('//*[@id="tablel4feo0hjff"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div/div[2]')}
+    get kolomPositionName () {return $('//*[@id="tablel4feo0hjff"]/div[2]/div/div/div[1]/div[2]/div/div/div/div[1]/div/div[1]/div[1]/div')}
+    get kolomDBAdmin () {return $('//*[@id="tablel4feo0hjff"]/div[2]/div/div/div[1]/div[2]/div/div/div/div[2]/div/div[3]/div[1]/div/div/div/div/span/div')}
+    get view () {return $('//*[@id="auto_z0mptk294t"]/div/div/span/div')}
+    get viewPlacement () {return $('//*[@id="auto_ulutpkyane"]/div/div')}
+    get back1 () {return $('//*[@id="auto_qsvx1ng2nw"]/div/div/div')}
+    get back2 () {return $('//*[@id="auto_10s7wy5onk"]/div/div/div')}
+
+
 
 
 
@@ -32,6 +43,7 @@ class PositionPage {
 
 
     //action
+
     async openPagePosition(){
         await browser.url('https://timesheet.app.prosigmaka.com/user/login')
     }
@@ -122,7 +134,45 @@ class PositionPage {
         await this.btnBack.click()
     }
 
+    async inputSearch (inputCari) {
+        await this.search.setValue(inputCari)
+    }
 
+    async getAllName () {
+        let hasil = []
+        let allNamePosisi = await this.allNamePosition
+        for (let i of allNamePosisi) {
+            let nama = await i.getText()
+            hasil.push(nama)
+        }
+        return hasil
+    }
+
+    async klikSilangPosition () {
+        await this.silangPosition.click()
+    }
+
+    async shortDesc () {
+        await this.kolomPositionName.click()
+    }
+
+    async shortAsc () {
+        await this.kolomPositionName.click()
+    }
+
+    async positionDetail () {
+        await this.kolomDBAdmin.click()
+        await browser.pause(2000)
+        await this.view.click()
+        await browser.pause(2000)
+        await this.viewPlacement.click()
+        await browser.pause(2000)
+        await this.back1.click()
+        await browser.pause(2000)
+        await this.back2.click()
+        await browser.pause(2000)
+
+    }
 
 }
 
