@@ -20,10 +20,17 @@ class AnaResource{
     get buttonView() {return $('[data-widgetname-cy="detail_resource_button"] button')}
     get xResourceDetail() {return $('//*[@id="auto_58xrpj18dj"]/div/div/div/div/span')}
     get buttonX() {return $('//*[@id="tabledl07ts8min"]/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div/div[2]')}
+    get buttonPencil() {return $('[data-widgetname-cy="edit_modal_trigger"] button')}
+    get barNameEdit() {return $('//*[@id="auto_ffmtz66knd"]/div/div/div[2]/div/span/span/div/input')}
+    get barNipEdit() {return $('//*[@id="auto_smr69iz2c6"]/div/div/div[2]/div/span/span/div/input')}
+    get barEmailEdit() {return $('//*[@id="auto_qklzgv8ln1"]/div/div/div[2]/div/span/span/div/input')}
+    get barContractEndEdit() {return $('//*[@id="auto_4kuzt9zmg3"]/div/div/div[2]/div/span/span/span/span/div/input')}
+    get buttonSubmitEdit() {return $('//*[@id="auto_b913awnqgm"]/div/div/div')}
+    get contractEnd24() {return $('/html/body/div[9]/div/div/div/div[2]/div/div/div/div[1]/div/div[2]/div/div[3]/div[4]/div[4]/div')}
+    get xNamaEdit() {return $('//*[@id="tabledl07ts8min"]/div[2]/div/div/div[1]/div[2]/div/div/div/div[2]/div/div[1]/div[2]/div/div/div/div/span/div')}
     get x() {return $('')}
     get x() {return $('')}
-    get x() {return $('')}
-    get x() {return $('')}
+
 
 
 
@@ -69,6 +76,35 @@ class AnaResource{
     }
     async xSearch(){
         await this.buttonX.click()
+    }
+    async editNamaResource(inputEditNama){
+        await this.barNameEdit.setValue(inputEditNama)
+    }
+    async editNipResource(inputEditNip){
+        await this.barNipEdit.setValue(inputEditNip)
+    }
+    async editEmailResource(inputEditEmail){
+        await this.barEmailEdit.setValue(inputEditEmail)
+    }
+    async editContractEndResource(){
+        await this.barContractEndEdit.click()
+    }
+    async editContractEndClick(){
+        await this.contractEnd24.click()
+    }
+    async submitEditResource(){
+        await this.buttonSubmitEdit.click()
+    }
+    async EditResource(){
+        await this.buttonPencil.click()
+    }
+    async clearValueNama() {
+        // Memastikan elemen ditemukan sebelum mencoba untuk menghapus nilainya
+        if (await this.barNameEdit.isExisting()) {
+            await this.barNameEdit.clearValue();
+        } else {
+            console.error('Element not found');
+        }
     }
 
 }

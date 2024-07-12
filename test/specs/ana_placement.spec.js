@@ -19,11 +19,17 @@ describe ("Test Case Placement 49-73", function(){
         await browser.pause(4000)
         await anaPlacement.addClient()
         await browser.pause(2000)
-        await anaPlacement.setClient('Paragon')
+        await anaPlacement.setClient('tes Client')
         await browser.pause(3000)
         await anaPlacement.subClient()
     })
+    //negatif
     it.skip ('tc 50 - User menambahkan client via placement update tanpa mengisi field nama', async function(){
+        await anaPlacement.openUpdate()
+        await browser.pause(4000)
+        await anaPlacement.addClient()
+        await browser.pause(3000)
+        await anaPlacement.subClient()
     })
     it ('tc 51 - User batal menambahkan client via placement update', async function(){
         await anaPlacement.addClient()
@@ -34,13 +40,18 @@ describe ("Test Case Placement 49-73", function(){
     it ('tc 52 - User menambahkan position via placement update', async function(){
         await anaPlacement.addPosition()
         await browser.pause(2000)
-        await anaPlacement.setPosition('System Analys')
+        await anaPlacement.setPosition('test position')
         await browser.pause(2000)
         await anaPlacement.subPosition()
         await browser.pause(3000)
 
     })
+    //negatif
     it.skip ('tc 53 - User menambahkan position via placement update tanpa mengisi field nama', async function(){
+        await anaPlacement.addPosition()
+        await browser.pause(2000)
+        await anaPlacement.subPosition()
+        await browser.pause(3000)
     })
     it ('tc 54 - User batal menambahkan position via placement update menggunakan button cancel', async function(){
         await anaPlacement.addPosition()
@@ -54,6 +65,7 @@ describe ("Test Case Placement 49-73", function(){
         await anaPlacement.backPlacement()
         await browser.pause(2000)
     })
+    //blocked
     // it ('tc 57 - User menambahkan placement dengan mengisi semua field menggunakan data yang valid', async function(){
     //     await anaPlacement.newPlacementClick()
     //     await browser.pause(3000)

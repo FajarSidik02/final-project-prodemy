@@ -13,8 +13,8 @@ describe ("Test Case Resource 1-11", function(){
     })
 
     it('tc 1 - User melakukan search pada halaman resource list berdasarkan NIP', async function(){
-        await anaResource.typeSearch('1093')
-        await expect(anaResource.xNip).toHaveText('1093')
+        await anaResource.typeSearch('847594')
+        await expect(anaResource.xNip).toHaveText('847594')
         await browser.pause(3000)
     })
     it('tc 2 - User melakukan search pada halaman resource list berdasarkan Nama', async function(){
@@ -65,4 +65,47 @@ describe ("Test Case Resource 1-11", function(){
         await browser.pause(3000)
         await expect(anaResource.xResourceDetail).toHaveText('Resource Details')
     })
+
+    //tidak bisa clear value
+    it.skip ('tc 33 - User mengubah Data Resource berdasarkan Nama', async function(){
+        await anaResource.EditResource()
+        await browser.pause(2000)
+        await anaResource.editNamaResource('')
+        await browser.pause(2000)
+        await anaResource.editNamaResource('apa hayo')
+        await browser.pause(2000)
+        await anaResource.submitEditResource()
+        await browser.pause(2000)
+        // await anaResource.typeSearch('apa hayo')
+        // await expect(anaResource.xNamaEdit).toHaveText('apa hayo')
+    })
+    it.skip ('tc 34 - User mengubah Data Resource berdasarkan NIP', async function(){
+        await anaResource.EditResource()
+        await browser.pause(2000)
+        await anaResource.editNipResource('2301')
+        await browser.pause(2000)
+        await anaResource.submitEditResource()
+        await browser.pause(2000)
+    })
+    it.skip ('tc 35 - User mengubah Data Resource berdasarkan email', async function(){
+        await anaResource.EditResource()
+        await browser.pause(2000)
+        await anaResource.editEmailResource('apaya@gmail.com')
+        await browser.pause(2000)
+        await anaResource.submitEditResource()
+        await browser.pause(2000)
+    })
+    it.skip ('tc 36 - User mengubah Data Resource berdasarkan Contract End', async function(){
+        await anaResource.EditResource()
+        await browser.pause(2000)
+        await anaResource.editContractEndResource()
+        await browser.pause(2000)
+        await anaResource.editContractEndClick()
+        await browser.pause(2000)
+        await anaResource.submitEditResource()
+        await browser.pause(2000)
+    })
+
+
+
 })
