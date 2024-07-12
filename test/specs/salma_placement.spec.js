@@ -3,38 +3,33 @@ import Placement2 from '../pageobjects/salma_placement.js'
 // import LoginPage from '../pageobjects/login.page.js'
 
 describe('PLACEMENT', function(){
-    describe('Placement Detail', function () {
-        beforeEach('User melakukan login', async function () {   
+    describe.skip('Placement Detail', function () {
+        before('User melakukan login', async function () {   
             await Placement2.openPage()
             await browser.pause(3000) 
-            await Placement2.login()
+            await Placement2.login('dummy@prosigmaka.com', 'dummypsm')
             await browser.pause(3000)
             await Placement2.clickTimesheet() 
             await browser.pause(2000)
             await Placement2.placementDetail()
         })
-        // afterEach( async function () {   
-        //     await browser.reloadSession()
-            
-        // })
     
-        it.skip('1 - User melakukan filtrasi data berdasarkan tanggal yang valid', async function () {  
+        it('1 - (25) User melakukan filtrasi data berdasarkan tanggal yang valid', async function () {  
             await Placement2.filterDetail()
             await Placement2.clickStartField()
             await Placement2.setStartDate()
             await Placement2.clickEndField()
             await Placement2.setEndDate()
+            await browser.pause(2000)
+            await Placement2.clickFilter()            
+            await Placement2.clickXFilter()            
             await browser.pause(3000)
-            await Placement2.clickFilter()
-            await browser.pause(3000)
-            
-    
-            //assert > error
-            await expect(Placement2.txtFilter).toEqual('filtered successfully!')
+                
+            await expect(Placement2.txtFilter).toHaveText('2024-06-28')
             
         })
     
-        it.only('2 - User melakukan reset filter data pada halaman view detail', async function () {  //passed
+        it('2 - (27) User melakukan reset filter data pada halaman view detail', async function () {  
             await Placement2.filterDetail()
             await Placement2.clickStartField()
             await Placement2.setStartDate()
@@ -42,21 +37,21 @@ describe('PLACEMENT', function(){
             await Placement2.setEndDate()
             await browser.pause(3000)
             await Placement2.clickFilter()
-            await Placement2.canceledFilter()
+            await Placement2.ClickResetFilter()
             await browser.pause(3000)
 
-            await expect(Placement2.txtCancelFIlter).toHaveText('2024-06-24')
+            await expect(Placement2.txtResetFIlter).toHaveText('2024-07-02')
         })
     
-        it('3 - User melakukan view detail pada salah satu view detail timesheet', async function () {  //passed
+        it('3 - (28) User melakukan view detail pada salah satu view detail timesheet', async function () {  
             await Placement2.detailRelated()
             await browser.pause(5000)
     
     
-            await expect(Placement2.txtTimesheetDetail).toHaveText(': 2024-06-24') //pake contains aja
+            await expect(Placement2.txtTimesheetDetail).toHaveText(expect.stringContaining('2024-07-02')) 
         })
     
-        it.skip('4 - User melakukan print timesheet dengan tanggal yang valid', async function () {  
+        it('4 - (30) User melakukan print timesheet dengan tanggal yang valid', async function () {  
             await Placement2.clickPrintIcon()
             await browser.pause(3000)
             await Placement2.clickStartPrint()
@@ -66,17 +61,11 @@ describe('PLACEMENT', function(){
             await browser.pause(3000)
             await Placement2.clickPrintBtn()
             await browser.pause(3000)
-
-            // const handleAlert = browser.getAlertText()
-            // console.log(handleAlert)
-
-            //expect handling alert
-            // await expect(Placement2.handlingAlertPrint).toHaveText('successfully')
-
-
+            
+            await expect(Placement2.txtPrint).toBeDisplayed()
         })
     
-        it('5 - User melakukan klik button cancel pada halaman print', async function () { //passed
+        it('5 - (32) User melakukan klik button cancel pada halaman print', async function () { 
             await browser.pause(3000) 
             await Placement2.clickPrintIcon()
             await browser.pause(3000)
@@ -85,7 +74,7 @@ describe('PLACEMENT', function(){
             await expect(Placement2.modalPrint).not.toBeDisplayed()
         })
     
-        it('6 - User melakukan klik button navigasi pada kolom timesheet untuk berpindah ke halaman selanjutnya', async function () { //passed 
+        it('6 - (33) User melakukan klik button navigasi pada kolom timesheet untuk berpindah ke halaman selanjutnya', async function () {  
             await browser.scroll(0, 500)
             await Placement2.clickNavRight()
             await browser.pause(3000)
@@ -93,15 +82,16 @@ describe('PLACEMENT', function(){
             await expect(Placement2.txt2).toHaveText('2')
         })
     
-        it('7 - User melakukan klik button navigasi pada kolom timesheet untuk berpindah ke halaman sebelumnya', async function () { //passed
+        it('7 - (34) User melakukan klik button navigasi pada kolom timesheet untuk berpindah ke halaman sebelumnya', async function () { 
             await Placement2.clickNavLeft()
             await browser.pause(3000)
     
             await expect(Placement2.txt1).toHaveText('1')
         })    
 
-        it('8 - User klik button back pada halaman timesheet detail', async function () {      //passed     
+        it('8 - (29) User klik button back pada halaman timesheet detail', async function () {           
             await Placement2.detailRelated()
+            await browser.pause(3000)
             await Placement2.backTSDetail()
             await browser.pause(5000)
 
@@ -112,56 +102,150 @@ describe('PLACEMENT', function(){
     
     
     describe('Placement Update', function () {
-        beforeEach('User melakukan login', async function () {   
+        before('User melakukan login', async function () {   
             await Placement2.openPage()
             await Placement2.login('dummy@prosigmaka.com','dummypsm')
             await browser.pause(3000) 
-            await Placement2.clickTimesheet() //?
+            await Placement2.clickTimesheet()
             await browser.pause(2000)
             await Placement2.placementUpdate()  
         })
-        after( async function () {   
-            await browser.reloadSession()
             
-        })
-    
-        it.skip('9 - User mengedit placement dengan mengupdate nama resource', async function () {  
-            
+        it('9 - (35) User mengedit placement dengan mengupdate nama resource', async function () {  
+            await Placement2.changeName()
+            await browser.pause(2000)
+            await Placement2.realDataClient()
+            await browser.pause(3000)
+            await Placement2.realDataPosition()
+            await Placement2.clickSubmitUpdate()
+            await browser.pause(3000)
+
+            await expect(Placement2.txtNameUpdate).not.toHaveText('testerz')
         })    
     
-        it.skip('10 - User mengedit placement dengan mengupdate nama client', async function () {  
-            
+        it('10 - (36) User mengedit placement dengan mengupdate nama client', async function () {  
+            await Placement2.realDataName()
+            await browser.pause(2000)
+            await Placement2.changeClient()
+            await browser.pause(2000)
+            await Placement2.realDataPosition()
+            await Placement2.clickSubmitUpdate()
+            await browser.pause(3000)
+
+            await expect(Placement2.txtClientUpdate).not.toHaveText('Ecomindo')
         })    
     
-        it.skip('11 - User mengedit placement dengan mengupdate tanggal PRF dibuat', async function () {  
-            
+        it('11 - (38) User mengedit placement dengan mengupdate tanggal PRF dibuat', async function () {  
+            await Placement2.realDataName()
+            await browser.pause(2000)
+            await Placement2.realDataClient()
+            await browser.pause(2000)
+            await Placement2.changePRFDate()
+            await browser.pause(2000)
+            await Placement2.realDataPosition()
+            await Placement2.clickSubmitUpdate()
+            await browser.pause(3000)
+            await Placement2.clickDetail()
+            await browser.pause(3000)
+
+            await expect(Placement2.txtPRFDate).toHaveText(expect.stringContaining('June 26, 2024'))
+
         })  
     
-        it.skip('12 - User mengedit placement dengan mengupdate position', async function () {  
-            
+        it('12 - (40) User mengedit placement dengan mengupdate position', async function () {  
+            await Placement2.realDataName()
+            await browser.pause(2000)
+            await Placement2.realDataClient()
+            await browser.pause(2000)
+            await Placement2.changePosition()
+            await Placement2.clickSubmitUpdate()
+            await browser.pause(3000)
+            await Placement2.clickDetail()
+            await browser.pause(3000)
+
+            await expect(Placement2.txtPosition).not.toHaveText(expect.stringContaining('.NET Developer'))
         })    
     
-        it.skip('13 - User mengedit placement dengan mengupdate placement location', async function () {  
-            
+        //error di  input change
+        it.only('13 - (41) User mengedit placement dengan mengupdate placement location', async function () {  
+            await Placement2.realDataName()
+            await browser.pause(2000)
+            await Placement2.realDataClient()
+            await browser.pause(2000)            
+            await Placement2.realDataPosition()
+            await Placement2.changePlacementLoc('Jogjakarta')
+            await Placement2.clickSubmitUpdate()
+            await browser.pause(3000)
+            await Placement2.clickDetail()
+            await browser.pause(3000)
+
+            await expect(Placement2.txtPlacementLoc).toHaveText(expect.stringContaining('Jogjakarta'))
         })    
     
-        it.skip('14 - User mengedit placement dengan mengupdate type', async function () {  
-            
+        it('14 - (42) User mengedit placement dengan mengupdate type', async function () {  
+            await Placement2.realDataName()
+            await browser.pause(2000)
+            await Placement2.realDataClient()
+            await browser.pause(2000)
+            await Placement2.realDataPosition()
+            await Placement2.changeType()
+            await Placement2.clickSubmitUpdate()
+            await browser.pause(3000)
+            await Placement2.clickDetail()
+            await browser.pause(3000)
+
+            await expect(Placement2.txtType).toHaveText(expect.stringContaining('New'))
         })    
     
-        it.skip('15 - User mengedit placement dengan mengupdate status', async function () {  
-            
+        it('15 - (43) User mengedit placement dengan mengupdate status', async function () {  
+            await Placement2.realDataName()
+            await browser.pause(2000)
+            await Placement2.realDataClient()
+            await browser.pause(2000)
+            await Placement2.realDataPosition()
+            await Placement2.changeStatus()
+            await Placement2.clickSubmitUpdate()
+            await browser.pause(3000)
+            await Placement2.clickDetail()
+            await browser.pause(3000)
+
+            await expect(Placement2.txtStatus).toHaveText(expect.stringContaining('Active'))
         })    
     
-        it.skip('16 - User mengedit placement dengan mengupdate return date', async function () {  
-            
+        it('16 - (44) User mengedit placement dengan mengupdate return date', async function () {  
+            await browser.pause(2000)
+            await Placement2.realDataName()
+            await browser.pause(2000)
+            await Placement2.realDataClient()
+            await browser.pause(2000)
+            await Placement2.realDataPosition()
+            await browser.pause(3000)
+            await browser.scroll(0, 500)
+            await Placement2.setReturnDate() 
+            await Placement2.clickSubmitUpdate()
+            await browser.pause(3000)
+            await Placement2.clickDetail()
+            await browser.pause(3000)
+
+            await expect(Placement2.txtReturnDate).toHaveText(expect.stringContaining('June 28, 2024'))
         })    
     
-        it.skip('17 - User mengedit placement dengan mengupdate return reason', async function () {  
-            
+        it('17 - (45) User mengedit placement dengan mengupdate return reason', async function () {  
+            await Placement2.realDataName()
+            await browser.pause(2000)
+            await Placement2.realDataClient()
+            await browser.pause(2000)
+            await Placement2.realDataPosition()
+            await Placement2.inputReturnReason() 
+            await Placement2.clickSubmitUpdate()
+            await browser.pause(3000)
+            await Placement2.clickDetail()
+            await browser.pause(3000)
+
+            await expect(Placement2.txtReturnReason).toHaveText(expect.stringContaining('Sakit'))
         })    
     
-        it('18 - User cancel edit placement update', async function () {  //passed
+        it('18 - (46) User cancel edit placement update', async function () {  
             await Placement2.cancelPUpdate()
             await browser.pause(5000)
 
