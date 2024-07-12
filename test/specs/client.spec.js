@@ -65,20 +65,20 @@ describe ("CLIENT TIMESHEET", function(){
         
     })
 
-    it('6. Klik tombol Navigasi pada halaman client list untuk berpindah ke halaman selanjutnya dan mengembaikannya', async function (){ 
+    it('6. Klik tombol Navigasi pada halaman client list untuk berpindah ke halaman selanjutnya', async function (){ 
         await clientPage.navigasiNext()
         await expect(clientPage.halamanNext).toHaveText('Page 2 of 2') //expectnya beluman passed
 
     })
 
-    it('6. Mengembalikan halaman ke halaman awal', async function (){ 
+    it('7. Mengembalikan halaman ke halaman awal', async function (){ 
         await clientPage.navigasiBack()
         await expect(clientPage.halamanAwal).toHaveText('Page 1 of 2') //ini juga
         await browser.pause(3000)
 
     })
 
-    it('7. Klik tombol Update Selected Client tetapi cancel', async function (){ 
+    it('8. Klik tombol Update Selected Client tetapi cancel', async function (){ 
         await clientPage.kolomBambang()
         await clientPage.klikUpdate()
         await clientPage.klikCancelUpdate()
@@ -92,14 +92,14 @@ describe ("CLIENT TIMESHEET", function(){
         await expect(clientPage.clientList).toBeDisplayed()
     })
 
-    it('8. Klik tombol Delete Selected Client dengan salah satu nama client', async function (){ 
+    it('10. Klik tombol Delete Selected Client dengan salah satu nama client', async function (){ 
         await clientPage.klikEcomindo()
         await clientPage.klikDelete()
         await clientPage.klikYesDelete()
         //expectnya gimana kl dia ke delete? kl popup kecepetan
     })
 
-    it('10. Search nama client dengan memasukkan 1 huruf', async function (){ 
+    it('11. Search nama client dengan memasukkan 1 huruf', async function (){ 
         await browser.pause(3000)
         await clientPage.inputSearch('a')
         await browser.pause(3000)
@@ -115,7 +115,7 @@ describe ("CLIENT TIMESHEET", function(){
 
     })
 
-    it('11. Search dengan full nama salah satu client ', async function (){ 
+    it('12. Search dengan full nama salah satu client ', async function (){ 
         await browser.pause(3000)
         await clientPage.inputSearch('Bambang')
         await browser.pause(3000)
@@ -130,7 +130,7 @@ describe ("CLIENT TIMESHEET", function(){
         await expect(clientPage.allNameClient).toBeElementsArrayOfSize(jumlahNama)
     })
 
-    it('12. Klik button silang pada kolom search', async function (){ 
+    it('13. Klik button silang pada kolom search', async function (){ 
         await browser.pause(3000)
         await clientPage.inputSearch('b')
         await browser.pause(3000)
@@ -138,7 +138,7 @@ describe ("CLIENT TIMESHEET", function(){
         await expect(clientPage.clientList).toBeDisplayed()
     })
 
-    it('13. Klik tombol View Selected Client pada client ecomindo', async function (){ 
+    it('14. Klik tombol View Selected Client pada client ecomindo', async function (){ 
         await clientPage.klikEcomindo()
         await clientPage.klikBtnView()
         await browser.pause(2000)
@@ -151,7 +151,7 @@ describe ("CLIENT TIMESHEET", function(){
         await expect(clientPage.clientList).toBeDisplayed()
     })
 
-    it('17. Short nama berdasarkan descending', async function (){
+    it('15. Short nama berdasarkan descending', async function (){
         await clientPage.klikKolomNameDesc()
         await browser.pause(2000)
         let searchA = await clientPage.getAllName()
@@ -163,7 +163,7 @@ describe ("CLIENT TIMESHEET", function(){
         //await expect(clientPage.allNameClient).toBeElementsArrayOfSize(jumlahNama)
     })
 
-    it('18. Short nama berdasarkan ascending', async function (){ 
+    it('16. Short nama berdasarkan ascending', async function (){ 
         await clientPage.klikKolomNameAsc()
         await browser.pause(2000)
         let searchA = await clientPage.getAllName()
