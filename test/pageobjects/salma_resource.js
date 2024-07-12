@@ -22,29 +22,30 @@ class Resource3 {
     get nameEdit(){return $('#auto_ffmtz66knd > div > div > div.sc-cqQeAO.iNAMSZ.text-input-wrapper > div > span > span > div > input')}
     get nipEdit(){return $('#auto_smr69iz2c6 > div > div > div.sc-cqQeAO.iNAMSZ.text-input-wrapper > div > span > span > div > input')}
     get emailEdit(){return $('#auto_qklzgv8ln1 > div > div > div.sc-cqQeAO.iNAMSZ.text-input-wrapper > div > span > span > div > input')}
-    get contStart(){return $('')}
-    get contEnd(){return $('')}
+    get contStart(){return $('#auto_33pwk2ckq7 > div > div > div.sc-cTcUcm.giBtmE')}
+    get contEnd(){return $('#auto_4kuzt9zmg3 > div > div > div.sc-cTcUcm.giBtmE')}
+    get txtContract(){return $('#tabledl07ts8min > div.tableWrap.virtual > div > div > div.simplebar-wrapper > div.simplebar-mask > div > div > div > div.sc-jTtXpN.jVTLXN.tbody.body > div > div.tr.selected-row.t--virtual-row > div:nth-child(4) > div > div > div > div > span > div')}
+
     get submitEdit(){return $('[data-widgetname-cy="update_form_submit"]')}
     get cancelEdit(){return $('[data-widgetname-cy="update_form_cancel"]')}
-    get txtEdit(){return $('')}
+    get txtEdit(){return $('[data-rowindex="0"]').$('[data-colindex="1"]')}
 
     get cancelEdit(){return $('[data-widgetname-cy="update_form_cancel"]')}
     get modalEdit(){return $('#root > div.sc-dSLGUj.fKTMqL > section > section > div > div > div > div > div > div.sc-bmhXnO.iIpWJw.auto-layout-layer-0-3 > div.sc-eLdnOn.sc-CqDOO.jPsBDi.eisDow > div > div > div > div > div > div > div.bp3-overlay-content.bp3-overlay-appear-done.bp3-overlay-enter-done')}    
     
-    get dataTester(){return $('[data-rowindex="9"]')}
+    get dataTester(){return $('[data-rowindex="8"]')}
     get detailIcon(){return $('[data-widgetname-cy="detail_resource_button"]')}
     
     get navRight(){return $('#tablegi64jzc4pf > div:nth-child(1) > div.simplebar-wrapper > div.simplebar-mask > div > div > div > div > div > div > div.sc-ewcqwX.gHknCu.t--table-widget-next-page > span > svg')}
     get navLeft(){return $('#tablegi64jzc4pf > div:nth-child(1) > div.simplebar-wrapper > div.simplebar-mask > div > div > div > div > div > div > div.sc-ewcqwX.gHknCu.t--table-widget-prev-page > span > svg')}
-    get txt1(){return $('#tablegi64jzc4pf > div:nth-child(1) > div.simplebar-wrapper > div.simplebar-mask > div > div > div > div > div > div > div.sc-ewcqwX.gHknCu.page-item')}
+    get txt1(){return $('#tablegi64jzc4pf > div:nth-child(1) > div.simplebar-wrapper > div.simplebar-mask > div > div > div > div > div > div > div:nth-child(3) > div')}
     
     get detailHistory(){return $('[data-widgetname-cy="placement_detail_button"]')}
     get txtPlacementDetail(){return $('.sc-hDWPob.hqHObj.bp3-ui-text')}
 
     get navRightHistory(){return $('#table9bucbxh84i > div:nth-child(1) > div.simplebar-wrapper > div.simplebar-mask > div > div > div > div > div > div > div.sc-ewcqwX.gHknCu.t--table-widget-next-page')}
-    get txt2History(){return $('#table9bucbxh84i > div:nth-child(1) > div.simplebar-wrapper > div.simplebar-mask > div > div > div > div > div > div > div.sc-ewcqwX.gHknCu.page-item')}
+    get txtHistory(){return $('#table9bucbxh84i > div:nth-child(1) > div.simplebar-wrapper > div.simplebar-mask > div > div > div > div > div > div > div:nth-child(3) > div')}
     get navLeftHistory(){return $('#table9bucbxh84i > div:nth-child(1) > div.simplebar-wrapper > div.simplebar-mask > div > div > div > div > div > div > div.sc-ewcqwX.gHknCu.t--table-widget-prev-page > span > svg')}
-    get txt1History(){return $('#table9bucbxh84i > div:nth-child(1) > div.simplebar-wrapper > div.simplebar-mask > div > div > div > div > div > div > div.sc-ewcqwX.gHknCu.page-item')}
     
     get backDetail(){return $('#auto_keryb8703h > div > div > div')}
     get txtBack(){return $('#auto_jqygsdepie > div > div > div > div > span')}
@@ -86,24 +87,29 @@ class Resource3 {
         await this.editIcon.click()
     }
 
-    async editName (){        
+    async editName (){     
         await this.nameEdit.setValue("sal")
     }
 
     async editNIP (){
-        await this.nipEdit.clearValue()
         await browser.pause(3000)
         await this.nipEdit.setValue("1234567")
     }
 
     async editEmail(){
-        await this.emailEdit.clearValue()
         await browser.pause(3000)
         await this.emailEdit.setValue("sal@gmail.com")
     }
 
     async editContract(){
-
+        await this.contStart.click()
+        await this.monthDropdown.click()
+        await this.labelMonth.click()
+        await this.startDate.click()
+        await this.contEnd.click()
+        await this.monthDropdown.click()
+        await this.labelMonth.click()
+        await this.endDate.click()
     }
 
     async clickSubmitEdit(){
@@ -123,6 +129,7 @@ class Resource3 {
 
     async checkNavLeft(){
         await this.navRight.click()
+        await browser.pause(3000)
         await this.navLeft.click()
     }
 
@@ -132,9 +139,11 @@ class Resource3 {
     }
 
     async checkNavRightHistory(){
+        await this.navRightHistory.scrollIntoView()
         await this.navRightHistory.click()
     }
     async checkNavLeftHistory(){
+        await this.navRightHistory.scrollIntoView()
         await this.navRightHistory.click()
         await this.navLeftHistory.click()
     }
